@@ -126,7 +126,7 @@ end
 -- Cleans old header element anyway.
 ---------------------------------------------------------------------
 local header_template = {
-	tag = "soap:Header",
+	tag = "soapenv:Header",
 }
 local function insert_header (obj, header)
 	-- removes old header
