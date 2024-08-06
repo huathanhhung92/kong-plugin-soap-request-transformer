@@ -53,8 +53,8 @@ local function transform_json_body_into_soap(conf, body)
             tag = "UserName",
             attr = {
             },
-            "POC",
-        },
+            "POC"
+        }
 	}
     local soap_doc = soap.encode(encode_args)
     kong.log.warn("Transformed request: "..soap_doc)
