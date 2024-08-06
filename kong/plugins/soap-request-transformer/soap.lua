@@ -135,6 +135,7 @@ local function insert_header (obj, header)
 	end
 	if header then
 		header_template[1] = header
+		header_template[2] = "header"
 		tinsert (obj, 1, header_template)
 	end
 end
