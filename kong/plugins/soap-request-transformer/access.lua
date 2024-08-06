@@ -44,7 +44,7 @@ local function transform_json_body_into_soap(conf, body)
     encode_args.soap_prefix = conf.soap_prefix
     encode_args.soap_version = conf.soap_version
     local soap_doc = soap.encode(encode_args)
-    kong.log.debug("Transformed request: "..soap_doc)
+    kong.log.warn("Transformed request: "..soap_doc)
     return true, soap_doc
 end
 
