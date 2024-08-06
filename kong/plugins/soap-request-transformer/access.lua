@@ -37,6 +37,7 @@ local function transform_json_body_into_soap(conf, body)
     local body = parameters.body[conf.method]
     local encode_args = {}
     local root = {}
+    kong.log.warn("Body request: "..body)
     parse_entries(body, root)
     encode_args.namespace = conf.namespace
     encode_args.method = conf.method
