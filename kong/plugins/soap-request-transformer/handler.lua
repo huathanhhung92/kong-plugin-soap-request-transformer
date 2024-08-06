@@ -18,7 +18,6 @@ local SoapTransformerHandler = {
 }
 
 local function remove_attr_tags(e)
-    kong.log.warn("Response body type: "..type(e))
     if type(e) == "table" then
         for k, v in pairs(e) do
             if k == '_attr' then

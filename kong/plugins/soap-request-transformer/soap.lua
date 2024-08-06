@@ -253,7 +253,8 @@ local function decode (doc)
 	local method = obj.tag:match ("%:([^:]*)$") or obj.tag
 	local entries = {}
 	for i = 1, #obj do
-		entries[i] = obj[i]
+		-- entries[i] = obj[i]
+		entries[i] = obj[i] = obj[i]:match(":(.*)") or obj[i]
 	end
 	return namespace, method, entries, headers
 end
