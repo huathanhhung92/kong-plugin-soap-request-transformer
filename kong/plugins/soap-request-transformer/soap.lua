@@ -134,8 +134,7 @@ local function insert_header (obj, header)
 		tremove (obj, 1)
 	end
 	if header then
-		-- header_template[1] = header
-		header_template[1] = "<alsb:HeaderIn xmlns:alsb=\"http://www.alsb.com/\"><UserName>POC</UserName><Password>poc@13579</Password></alsb:HeaderIn>"
+		header_template[1] = header
 		tinsert (obj, 1, header_template)
 	end
 end

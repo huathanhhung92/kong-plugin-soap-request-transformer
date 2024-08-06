@@ -44,7 +44,15 @@ local function transform_json_body_into_soap(conf, body)
     encode_args.soap_prefix = conf.soap_prefix
     encode_args.soap_version = conf.soap_version
     encode_args.internal_namespace = "alsb"
-    encode_args.header = "abc"
+    encode_args.header = {
+		tag = "t:Transaction",
+		attr = { "xmlns:t", "xsi:type", "mustUnderstand",
+			["xmlns:t"] = "some-URI",
+			["xsi:type"] = "xsd:int",
+			["mustUnderstand"] = 1,
+		},
+		5,
+	}
     local soap_doc = soap.encode(encode_args)
     kong.log.warn("Transformed request: "..soap_doc)
     return true, soap_doc
