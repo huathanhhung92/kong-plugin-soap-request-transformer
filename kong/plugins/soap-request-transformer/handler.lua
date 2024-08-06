@@ -28,6 +28,19 @@ local function remove_attr_tags(e)
     end
 end
 
+-- Assume `parsed_table` is the table you got after parsing the XML
+local function strip_prefixes(t)
+    for k, v in pairs(t) do
+        local new_key = k:match(":(.*)") or k  -- Remove the prefix
+        t[new_key] = v
+        if new_key ~= k then
+            t[k] = nil  -- Remove the old key
+        end
+        if type(v) == "table" then
+            strip_prefixes(v)  -- Recursively remove prefixes in nested tables
+        end
+    end
+end
 
 
 function SoapTransformerHandler.convertXMLtoJSON(xml, conf)
@@ -42,6 +55,7 @@ function SoapTransformerHandler.convertXMLtoJSON(xml, conf)
     local t = xmlHandler.root[SOAPPrefix .. ":Envelope"][SOAPPrefix .. ":Body"]
     if conf.remove_attr_tags then
         remove_attr_tags(t)
+        strip_prefixes(t)
     end
 
     return cjson.encode(t)
