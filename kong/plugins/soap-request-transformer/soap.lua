@@ -255,6 +255,7 @@ local function decode (doc)
 	for i = 1, #obj do
 		-- entries[i] = obj[i]
 		entries[i] = obj[i]:match(":(.*)") or obj[i]
+		kong.log.warn("SOAP Body Object : ".. obj[i])
 	end
 	return namespace, method, entries, headers
 end
