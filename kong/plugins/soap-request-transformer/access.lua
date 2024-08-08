@@ -43,13 +43,14 @@ local function transform_json_body_into_soap(conf, body)
     encode_args.entries = root
     encode_args.soap_prefix = conf.soap_prefix
     encode_args.soap_version = conf.soap_version
-    encode_args.internal_namespace = "alsb"
-    encode_args.header = {
-        tag = "alsb:HeaderIn",
-            attr = { "xmlns:alsb", ["xmlns:alsb"] = "http://www.alsb.com/", },
-            { tag = "UserName", "POC", },
-            { tag = "Password", "poc@13579", },
-    }
+    encode_args.internal_namespace = conf.internal_namespace
+    encode_args.header = conf.header
+    -- encode_args.header = {
+    --     tag = "alsb:HeaderIn",
+    --         attr = { "xmlns:alsb", ["xmlns:alsb"] = "http://www.alsb.com/", },
+    --         { tag = "UserName", "POC", },
+    --         { tag = "Password", "poc@13579", },
+    -- }
     local soap_doc = soap.encode(encode_args)
     kong.log.warn("Transformed request: "..soap_doc)
     return true, soap_doc

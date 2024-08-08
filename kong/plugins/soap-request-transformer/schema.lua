@@ -23,6 +23,16 @@ return {
                         },
                     },
                     {
+                        internal_namespace = {
+                            type = "string"
+                        },
+                    },
+                    {
+                        header = {
+                            type = "string"
+                        },
+                    },
+                    {
                         remove_attr_tags = {
                             type = "boolean",
                             required = false,
